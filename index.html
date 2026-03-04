@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Job Board</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body{
+    background:#eef2f7;
+}
+
+/* NAVBAR */
+nav{
+    background:#0f172a;
+    color:white;
+    padding:15px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+nav h2{
+    color:#38bdf8;
+}
+
+nav ul{
+    list-style:none;
+    display:flex;
+    gap:20px;
+}
+
+nav ul li{
+    cursor:pointer;
+}
+
+/* HERO SECTION */
+.hero{
+    background:linear-gradient(to right,#1e3a8a,#2563eb);
+    color:white;
+    padding:60px 20px;
+    text-align:center;
+}
+
+.hero h1{
+    font-size:32px;
+    margin-bottom:10px;
+}
+
+.hero p{
+    font-size:18px;
+}
+
+/* SEARCH */
+.search-container{
+    margin-top:20px;
+}
+
+.search-container input{
+    padding:10px;
+    width:250px;
+    border:none;
+    border-radius:5px;
+}
+
+.search-container button{
+    padding:10px 15px;
+    border:none;
+    background:#38bdf8;
+    color:black;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+/* JOB SECTION */
+.container{
+    width:90%;
+    margin:40px auto;
+}
+
+.job-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.job-card{
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    transition:0.3s;
+}
+
+.job-card:hover{
+    transform:translateY(-5px);
+}
+
+.job-card h3{
+    margin-bottom:8px;
+    color:#1e3a8a;
+}
+
+.job-card p{
+    font-size:14px;
+    margin-bottom:10px;
+}
+
+.btn{
+    padding:8px 12px;
+    border:none;
+    background:#1e3a8a;
+    color:white;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+/* DASHBOARD */
+.dashboard{
+    margin-top:50px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+.box{
+    flex:1 1 300px;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* FOOTER */
+footer{
+    background:#0f172a;
+    color:white;
+    text-align:center;
+    padding:15px;
+    margin-top:40px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+    <h2>JobBoard</h2>
+    <ul>
+        <li>Home</li>
+        <li>Jobs</li>
+        <li>Dashboard</li>
+        <li>Login</li>
+    </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <h1>Find Your Dream Job Today</h1>
+    <p>Employers post jobs & candidates apply easily</p>
+
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search job title...">
+        <button onclick="searchJob()">Search</button>
+    </div>
+</section>
+
+<!-- JOB LIST -->
+<div class="container">
+    <div class="job-grid" id="jobList">
+        <div class="job-card">
+            <h3>Frontend Developer</h3>
+            <p>Company: ABC Tech</p>
+            <button class="btn" onclick="applyJob()">Apply</button>
+        </div>
+
+        <div class="job-card">
+            <h3>Backend Developer</h3>
+            <p>Company: XYZ Solutions</p>
+            <button class="btn" onclick="applyJob()">Apply</button>
+        </div>
+
+        <div class="job-card">
+            <h3>UI/UX Designer</h3>
+            <p>Company: Creative Studio</p>
+            <button class="btn" onclick="applyJob()">Apply</button>
+        </div>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div class="dashboard">
+        <div class="box">
+            <h3>Employer Dashboard</h3>
+            <p>Post and manage job listings.</p>
+        </div>
+
+        <div class="box">
+            <h3>Candidate Dashboard</h3>
+            <p>Manage profile and track applications.</p>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>Email Notifications | Secure Login | Mobile Responsive</p>
+</footer>
+
+<script>
+function searchJob(){
+    let input = document.getElementById("searchInput").value.toLowerCase();
+    let jobs = document.getElementsByClassName("job-card");
+
+    for(let i=0;i<jobs.length;i++){
+        let title = jobs[i].getElementsByTagName("h3")[0].innerText.toLowerCase();
+        if(title.includes(input)){
+            jobs[i].style.display="block";
+        }else{
+            jobs[i].style.display="none";
+        }
+    }
+}
+
+function applyJob(){
+    alert("Application submitted successfully!");
+}
+</script>
+
+</body>
+</html>
